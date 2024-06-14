@@ -41,7 +41,7 @@ class TaskController extends Controller
             }
     
             // Obtener las tareas paginadas en lugar de una colección
-            $tasks = $tasksQuery->paginate(2);
+            $tasks = $tasksQuery->paginate(10);
     
             return view('tasks.index', compact('tasks'));
         } catch (\Exception $e) {

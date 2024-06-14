@@ -19,7 +19,7 @@
                     @if(session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
-                    <div class="table-responsive"> <!-- Añadido para hacer la tabla responsive -->
+                    <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -34,21 +34,19 @@
                                 @foreach($tasks as $task)
                                     <tr>
                                         <td>{{ $task->title }}</td>
-                                        <td>{{ $task->description }}</td>
+                                        <td data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $task->description }}">{{ \Illuminate\Support\Str::limit($task->description, 100) }}</td>
                                         <td>{{ ucfirst($task->status->name) }}</td>
                                         <td>{{ $task->created_at->format('Y-m-d H:i:s') }}</td>
                                         <td>
                                             <div class="d-flex flex-column flex-md-row align-items-center">
                                                 <a href="{{ route('tasks.edit', $task) }}" class="btn btn-warning btn-sm mb-1 mb-md-0 me-md-1">{{ __('Editar') }}</a>
-                                                <form action="{{ route('tasks.destroy', $task) }}" method="POST"
-                                                    style="display: inline-block;">
+                                                <form action="{{ route('tasks.destroy', $task) }}" method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm mb-1 mb-md-0 me-md-1">{{ __('Eliminar') }}</button>
                                                 </form>
                                                 @if($task->status->name != 'Completada')
-                                                    <form action="{{ route('tasks.complete', $task) }}" method="POST"
-                                                        style="display: inline-block;">
+                                                    <form action="{{ route('tasks.complete', $task) }}" method="POST" style="display: inline-block;">
                                                         @csrf
                                                         <button type="submit" class="btn btn-success btn-sm">{{ __('Completar') }}</button>
                                                     </form>
@@ -60,9 +58,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- Agrega la paginación aquí -->
                     <div class="d-flex justify-content-center">
-                        {{ $tasks->links('pagination::bootstrap-5') }}
+                        {{ $tasks->appends(['filter' => request()->input('filter')])->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
@@ -71,9 +68,13 @@
 </div>
 
 <script>
-    // Script para redirigir según la opción seleccionada en la lista desplegable
     document.getElementById('filterTasks').onchange = function() {
         window.location.href = this.value;
     };
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 </script>
 @endsection
