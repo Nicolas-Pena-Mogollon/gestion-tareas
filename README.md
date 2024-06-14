@@ -13,6 +13,7 @@ Este proyecto es una aplicación web de gestión de tareas (To-Do List) desarrol
 
 - **PHP Version**: 8.2.12
 - **Framework**: Laravel 11.9
+- **Composer**
 - **Base de Datos**: MySQL
 - **Despliegue**: Heroku
 
@@ -41,6 +42,8 @@ Este proyecto es una aplicación web de gestión de tareas (To-Do List) desarrol
         - MAIL_PASSWORD
         - MAIL_FROM_ADDRESS
 
+**NOTA**: Para la configuración del servicio de correo es necesario usar las credenciales de aplicación, seguir el siguiente paso a paso: https://support.google.com/mail/answer/185833?hl=es-419
+
 4. **Generar la clave de la aplicación**:
    ```bash
    php artisan key:generate
@@ -56,6 +59,30 @@ Este proyecto es una aplicación web de gestión de tareas (To-Do List) desarrol
 8. **Acceder a la aplicación**:
    La aplicación estará disponible en http://localhost:8000.
 
+## Despliegue en Heroku
+Para desplegar la aplicación en Heroku:
+1. **Crear una cuenta gratuita en Heroku (En caso de no tener)**:
+2. **Iniciar sesión en Heroku**:
+   ```bash
+   heroku login
+3. **Crea una nueva aplicación en Heroku**:
+    ```bash
+   heroku create gestion-tareas2024
+4. **Añadir el addon de JawsDB para MySQL**:
+   ```bash
+   heroku addons:create jawsdb:kitefin -a gestion-tareas2024
+5. **Verificar las variables de conexión de la base de datos**:
+   ```bash
+   heroku config:get JAWSDB_URL -a gestion-tareas2024
+6. **Subir únicamente lo contenido en el archivo .env del proyecto, la configuración de la conexión a la base de datos y otras variables de entorno, realizarla a través de consola o desde el dashboard**.
+7. **Despliegue del Código**
+   ```bash
+    git add .
+    git commit -m "Preparar para despliegue en Heroku"
+    git push heroku master
+
+**ENLACES**:
+- [Aplicación en Heroku](http://gestion-tareas2024-bb51e35ab758.herokuapp.com/)
 
 
 
