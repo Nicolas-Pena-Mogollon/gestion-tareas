@@ -50,11 +50,17 @@ Este proyecto es una aplicación web de gestión de tareas (To-Do List) desarrol
 5. **Ejecutar las migraciones de la base de datos**:
    ```bash
     php artisan migrate
+6. **Crear los estados en la base de datos**:
+    ```sql
+    INSERT INTO db_name.taskstatus (name) VALUES
+	 ('Completada'),
+	 ('No completada');
 6. **Iniciar el servidor de desarrollo**:
    ```bash
    php artisan serve
 7. **Compila los activos front-end (si es necesario)**:
    ```bash
+   npm install
    npm run dev
 8. **Acceder a la aplicación**:
    La aplicación estará disponible en http://localhost:8000.
