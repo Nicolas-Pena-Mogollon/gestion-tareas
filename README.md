@@ -80,6 +80,8 @@ Para desplegar la aplicación en Heroku:
     git add .
     git commit -m "Preparar para despliegue en Heroku"
     git push heroku master
+8. **Opcional - Configuración de certificado SSL en Heroku**:
+   Configurar el certificado SSL desde el dashboard de Heroku.
 
 **ENLACES**:
 - [Aplicación en Heroku](http://gestion-tareas2024-bb51e35ab758.herokuapp.com/)
