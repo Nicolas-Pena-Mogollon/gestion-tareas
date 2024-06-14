@@ -13,6 +13,7 @@ Este proyecto es una aplicación web de gestión de tareas (To-Do List) desarrol
 
 - **PHP Version**: 8.2.12
 - **Framework**: Laravel 11.9
+- **Node.js**
 - **Composer**
 - **Base de Datos**: MySQL
 - **Despliegue**: Heroku
