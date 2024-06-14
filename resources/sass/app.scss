@@ -1,2 +1,7 @@
 // Importar Bootstrap
 @import "/node_modules/bootstrap";
+
+/* Ajustes para los símbolos de navegación de la paginación */
+.justify-content-sm-between {
+    gap: 10px;
+}

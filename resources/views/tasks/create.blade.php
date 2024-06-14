@@ -1,43 +1,42 @@
-<!-- resources/views/tasks/create.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Create Task</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Crear Tarea') }}</div>
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('tasks.store') }}">
-                            @csrf
+                <div class="card-body">
+                    <form method="POST" action="{{ route('tasks.store') }}">
+                        @csrf
 
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" required autocomplete="title" autofocus>
-                                @error('title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="mb-3">
+                            <label for="title">{{ __('Título') }}</label>
+                            <input type="text" name="title" class="form-control" id="title" required>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="3"></textarea>
-                                @error('description')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="mb-3">
+                            <label for="description">{{ __('Descripción') }}</label>
+                            <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+                        </div>
 
-                            <button type="submit" class="btn btn-primary">Create Task</button>
-                        </form>
-                    </div>
+                        <div class="mb-3">
+                            <label for="status_id">{{ __('Estado') }}</label>
+                            <select name="status_id" id="status_id" class="form-control">
+                                @foreach($taskstatus as $status)
+                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3 text-center">
+                            <button type="submit" class="btn btn-primary">{{ __('Guardar Tarea') }}</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection

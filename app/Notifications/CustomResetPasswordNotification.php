@@ -10,7 +10,7 @@ class CustomResetPasswordNotification extends Notification
     public $token;
 
     /**
-     * Create a new notification instance.
+     * Crea una nueva instancia de la notificación.
      *
      * @param  string  $token
      * @return void
@@ -21,7 +21,7 @@ class CustomResetPasswordNotification extends Notification
     }
 
     /**
-     * Get the notification's delivery channels.
+     * Obtiene los canales de entrega de la notificación.
      *
      * @param  mixed  $notifiable
      * @return array
@@ -32,7 +32,7 @@ class CustomResetPasswordNotification extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
+     * Obtiene la representación del correo electrónico de la notificación.
      *
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage

@@ -15,9 +15,9 @@ class RegisterController extends Controller
     | Register Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
+    | Este controlador maneja el registro de nuevos usuarios, así como su
+    | validación y creación. Por defecto, este controlador utiliza un trait
+    | para proporcionar esta funcionalidad sin requerir código adicional.
     |
     */
 
@@ -37,6 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        // Middleware que permite que solo los invitados (usuarios no autenticados) puedan acceder a los métodos del controlador
         $this->middleware('guest');
     }
 
@@ -48,10 +49,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // Define las reglas de validación para los datos de registro
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            // Mensajes personalizados para errores de validación
+            'name.required' => 'El nombre es obligatorio.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'Debe ser una dirección de correo electrónico válida.',
+            'email.unique' => 'Este correo electrónico ya está en uso.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
         ]);
     }
 
@@ -63,6 +74,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Crea una nueva instancia de usuario con los datos proporcionados y encripta la contraseña
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

@@ -4,10 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateTasksTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
@@ -16,16 +18,18 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->boolean('completed')->default(false);
+            $table->foreignId('status_id')->constrained('taskstatus')->default(2); // Asumiendo 2 -> no completada
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down()
     {
         Schema::dropIfExists('tasks');
     }
-};
+}

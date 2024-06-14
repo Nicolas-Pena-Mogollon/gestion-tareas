@@ -10,6 +10,9 @@ Auth::routes();
 
 // Rutas protegidas por autenticación
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return redirect('/tasks');
+    });
     Route::resource('tasks', TaskController::class);
     Route::post('tasks/{task}/complete', [TaskController::class, 'complete'])->name('tasks.complete');
 });
