@@ -55,14 +55,14 @@ Este proyecto es una aplicación web de gestión de tareas (To-Do List) desarrol
     INSERT INTO db_name.taskstatus (name) VALUES
 	 ('Completada'),
 	 ('No completada');
-6. **Iniciar el servidor de desarrollo**:
+7. **Iniciar el servidor de desarrollo**:
    ```bash
    php artisan serve
-7. **Compila los activos front-end (si es necesario)**:
+8. **Compila los activos front-end (si es necesario)**:
    ```bash
    npm install
    npm run dev
-8. **Acceder a la aplicación**:
+9. **Acceder a la aplicación**:
    La aplicación estará disponible en http://localhost:8000.
 
 ## Despliegue en Heroku
@@ -80,13 +80,18 @@ Para desplegar la aplicación en Heroku:
 5. **Verificar las variables de conexión de la base de datos**:
    ```bash
    heroku config:get JAWSDB_URL -a gestion-tareas2024
-6. **Subir únicamente lo contenido en el archivo .env del proyecto, la configuración de la conexión a la base de datos y otras variables de entorno, realizarla a través de consola o desde el dashboard**.
-7. **Despliegue del Código**
+6. **Crear los estados en la base de datos**:
+    ```sql
+    INSERT INTO db_name.taskstatus (name) VALUES
+	 ('Completada'),
+	 ('No completada');
+7. **Subir únicamente lo contenido en el archivo .env del proyecto, la configuración de la conexión a la base de datos y otras variables de entorno, realizarla a través de consola o desde el dashboard**.
+8. **Despliegue del Código**
    ```bash
     git add .
     git commit -m "Preparar para despliegue en Heroku"
     git push heroku master
-8. **Opcional - Configuración de certificado SSL en Heroku**:
+9. **Opcional - Configuración de certificado SSL en Heroku**:
    Configurar el certificado SSL desde el dashboard de Heroku.
 
 **ENLACES**:
