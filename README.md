@@ -80,7 +80,10 @@ Para desplegar la aplicación en Heroku:
 5. **Verificar las variables de conexión de la base de datos**:
    ```bash
    heroku config:get JAWSDB_URL -a gestion-tareas2024
-6. **Crear los estados en la base de datos**:
+6. **Modificar el .env de manera local para correr las migraciones con la base de datos de Heroku y ejecutar las migraciones**:
+   ```bash
+   php artisan migrate
+7. **Crear los estados en la base de datos**:
     ```sql
     INSERT INTO db_name.taskstatus (name) VALUES
 	 ('Completada'),
@@ -91,11 +94,11 @@ Para desplegar la aplicación en Heroku:
     git add .
     git commit -m "Preparar para despliegue en Heroku"
     git push heroku master
+
+**NOTA**: Es importante configurar la ruta de git, se puede verificar con el comando ´git remote -v´, en caso de no estar, la ruta se puede observar en el dashboard de Heroku
+
 9. **Opcional - Configuración de certificado SSL en Heroku**:
    Configurar el certificado SSL desde el dashboard de Heroku.
 
 **ENLACES**:
-- [Aplicación en Heroku](http://gestion-tareas2024-bb51e35ab758.herokuapp.com/)
-
-
-
+- [Aplicación en Heroku](https://gestion-tareas2024-bb51e35ab758.herokuapp.com/)
